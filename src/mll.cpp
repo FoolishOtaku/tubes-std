@@ -3,8 +3,6 @@
 #include <iomanip>
 using namespace std;
 
-// ==================== FUNGSI QUERY ====================
-
 void queryTournamentByPrize(ListTournament L, int minPrize) {
     adrTournament P = L.first;
     bool found = false;
@@ -27,8 +25,6 @@ void queryTournamentByPrize(ListTournament L, int minPrize) {
         cout << "Tidak ada tournament dengan hadiah >= $" << minPrize << endl;
     }
 }
-
-// ==================== FUNGSI COUNTING ====================
 
 int countAllTournaments(ListTournament L) {
     int count = 0;
@@ -59,8 +55,6 @@ int countMatchesByTournament(adrTournament P) {
     }
     return count;
 }
-
-// ==================== FUNGSI UTILITY ====================
 
 void deleteAllMatches(adrTournament P) {
     adrMatch M = P->info.firstMatch;

@@ -3,8 +3,6 @@
 #include <iomanip>
 using namespace std;
 
-// ==================== FUNGSI TOURNAMENT (PARENT) ====================
-
 void createListTournament(ListTournament &L) {
     L.first = nullptr;
 }
@@ -55,7 +53,6 @@ void deleteTournament(ListTournament &L, int tournamentID) {
     }
     
     if (P != nullptr) {
-        // Hapus semua match terlebih dahulu
         deleteAllMatches(P);
         
         if (Prec == nullptr) {
@@ -143,8 +140,6 @@ void updateTournament(ListTournament &L, int tournamentID) {
         cout << "Tournament tidak ditemukan!" << endl;
     }
 }
-
-// ==================== FUNGSI MATCH (CHILD) ====================
 
 adrMatch createElmMatch(Match data) {
     adrMatch M = new ElmMatch;
@@ -272,5 +267,3 @@ void updateMatch(adrTournament P, int matchID) {
         cout << "Match tidak ditemukan!" << endl;
     }
 }
-
-// ==================== FUNGSI SEARCH/QUERY/UTILITY DIPINDAHKAN KE mll.cpp ====================

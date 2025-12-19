@@ -4,7 +4,6 @@
 #include <limits>
 using namespace std;
 
-// ============ Display Menus ============
 void displayMainMenu() {
     cout << "\n============================================" << endl;
     cout << "   SISTEM MANAJEMEN TOURNAMENT ESPORT" << endl;
@@ -48,7 +47,6 @@ void displayMatchMenu() {
     cout << "Pilih menu: ";
 }
 
-// ============ Tournament operations ============
 void addTournament(ListTournament &L) {
     Tournament t;
     adrTournament P = nullptr;
@@ -176,7 +174,6 @@ void handleDeleteTournament(ListTournament &L) {
     }
 }
 
-// ============ Match operations ============
 void addMatch(ListTournament &L) {
     adrTournament temp = nullptr;
     int tournamentID = 0;
@@ -389,7 +386,6 @@ void handleDeleteMatch(ListTournament L) {
     }
 }
 
-// ============ Search & Query ============
 void searchTournament(ListTournament L) {
     string name;
     cout << "\n=== Search Tournament ===";
@@ -418,14 +414,12 @@ void queryTournament(ListTournament L) {
     queryTournamentByPrize(L, minPrize);
 }
 
-// ============ Statistik ============
 void showStatistics(ListTournament L) {
     cout << "\n=== STATISTIK SISTEM ===" << endl;
     cout << "Total Tournament: " << countAllTournaments(L) << endl;
     cout << "Total Match     : " << countAllMatches(L) << endl;
 }
 
-// ============ Sample Data ============
 void loadSampleData(ListTournament &L) {
     Tournament t1;
     adrTournament T1 = nullptr;
@@ -450,7 +444,6 @@ void loadSampleData(ListTournament &L) {
     insertLastMatch(T2, M3);
 }
 
-// ============ Menu Controllers ============
 void menuTournament(ListTournament &L) {
     bool run = true;
     int c = 0;

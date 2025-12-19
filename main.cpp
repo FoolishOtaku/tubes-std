@@ -1,4 +1,3 @@
-// Main bersih: hanya koordinasi menu
 #include <iostream>
 #include "src/tournament.h"
 #include "src/menu.h"
@@ -35,7 +34,7 @@ int main() {
                 showStatistics(L);
                 break;
             case 0:
-                cout << "\nTerima kasih telah menggunakan sistem!" << endl;
+                cout << "\nMenghapus semua Tournament!" << endl;
                 deleteAllTournaments(L);
                 running = false;
                 break;
