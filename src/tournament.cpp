@@ -124,14 +124,13 @@ void updateTournament(ListTournament &L, int tournamentID) {
         
         cout << "\nMasukkan data baru:" << endl;
         cout << "Nama Tournament: ";
-        cin.ignore();
-        getline(cin, P->info.tournamentName);
+        cin >> P->info.tournamentName;
         cout << "Game: ";
-        getline(cin, P->info.game);
+        cin >> P->info.game;
         cout << "Tanggal Mulai (DD/MM/YYYY): ";
-        getline(cin, P->info.startDate);
+        cin >> P->info.startDate;
         cout << "Tanggal Selesai (DD/MM/YYYY): ";
-        getline(cin, P->info.endDate);
+        cin >> P->info.endDate;
         cout << "Total Hadiah ($): ";
         cin >> P->info.totalPrize;
         
@@ -246,21 +245,19 @@ void updateMatch(adrTournament P, int matchID) {
         
         cout << "\nMasukkan data baru:" << endl;
         cout << "Nama Match: ";
-        cin.ignore();
-        getline(cin, M->info.matchName);
+        cin >> M->info.matchName;
         cout << "Tim 1: ";
-        getline(cin, M->info.team1);
+        cin >> M->info.team1;
         cout << "Tim 2: ";
-        getline(cin, M->info.team2);
+        cin >> M->info.team2;
         cout << "Score Tim 1: ";
         cin >> M->info.scoreTeam1;
         cout << "Score Tim 2: ";
         cin >> M->info.scoreTeam2;
-        cin.ignore();
         cout << "Tanggal Match (DD/MM/YYYY): ";
-        getline(cin, M->info.matchDate);
+        cin >> M->info.matchDate;
         cout << "Status (Scheduled/Ongoing/Completed): ";
-        getline(cin, M->info.status);
+        cin >> M->info.status;
         
         cout << "Match berhasil diupdate!" << endl;
     } else {

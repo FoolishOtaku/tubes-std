@@ -61,13 +61,13 @@ void addTournament(ListTournament &L) {
     }
 
     cout << "Nama Tournament: ";
-    getline(cin, t.tournamentName);
+    cin >> t.tournamentName;
     cout << "Game (contoh: ML, PUBG, Valorant): ";
-    getline(cin, t.game);
+    cin >> t.game;
     cout << "Tanggal Mulai (DD/MM/YYYY): ";
-    getline(cin, t.startDate);
+    cin >> t.startDate;
     cout << "Tanggal Selesai (DD/MM/YYYY): ";
-    getline(cin, t.endDate);
+    cin >> t.endDate;
     cout << "Total Hadiah ($): ";
     cin >> t.totalPrize;
 
@@ -86,11 +86,13 @@ void searchTournamentByIDWithList(ListTournament L) {
     }
     cout << "\nDaftar Tournament:" << endl;
     temp = L.first;
+
     while (temp != nullptr) {
         cout << "ID: " << temp->info.tournamentID << " - " << temp->info.tournamentName
              << " (" << temp->info.game << ")" << endl;
         temp = temp->next;
     }
+
     cout << "\nMasukkan ID Tournament: ";
     cin >> id;
     P = findTournamentByID(L, id);
@@ -111,8 +113,7 @@ void searchTournamentByName(ListTournament L) {
     string name;
     adrTournament P = nullptr;
     cout << "\nMasukkan Nama Tournament: ";
-    cin.ignore();
-    getline(cin, name);
+    cin >> name;
     P = findTournamentByName(L, name);
     if (P) {
         cout << "\nID             : " << P->info.tournamentID << endl;
@@ -200,26 +201,24 @@ void addMatch(ListTournament &L) {
 
     cout << "ID Match: ";
     cin >> m.matchID;
-    cin.ignore();
     if (findMatchByID(T, m.matchID)) {
         cout << "ID match sudah ada!" << endl;
         return;
     }
     cout << "Nama Match: ";
-    getline(cin, m.matchName);
+    cin >> m.matchName;
     cout << "Tim 1: ";
-    getline(cin, m.team1);
+    cin >> m.team1;
     cout << "Tim 2: ";
-    getline(cin, m.team2);
+    cin >> m.team2;
     cout << "Score Tim 1: ";
     cin >> m.scoreTeam1;
     cout << "Score Tim 2: ";
     cin >> m.scoreTeam2;
-    cin.ignore();
     cout << "Tanggal Match (DD/MM/YYYY): ";
-    getline(cin, m.matchDate);
+    cin >> m.matchDate;
     cout << "Status (Scheduled/Ongoing/Completed): ";
-    getline(cin, m.status);
+    cin >> m.status;
 
     M = createElmMatch(m);
     insertLastMatch(T, M);
@@ -390,8 +389,7 @@ void searchTournament(ListTournament L) {
     string name;
     cout << "\n=== Search Tournament ===";
     cout << "\nMasukkan nama tournament: ";
-    cin.ignore();
-    getline(cin, name);
+    cin >> name;
     adrTournament P = findTournamentByName(L, name);
     if (P) {
         cout << "\nID             : " << P->info.tournamentID << endl;
