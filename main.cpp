@@ -3,14 +3,15 @@
 #include "src/menu.h"
 using namespace std;
 
-int main() {
+int main() 
+{
     ListTournament L;
     createListTournament(L);
 
-    cout << "=== Sistem Manajemen Tournament Esport ===" << endl;
-    cout << "Memuat data sample..." << endl;
+    cout<<"=== Sistem Manajemen Tournament Esport ==="<<endl;
+    cout<<"Memuat data sample..."<<endl;
     loadSampleData(L);
-    cout << "Data sample berhasil dimuat!" << endl;
+    cout<<"Data sample berhasil dimuat!"<<endl;
 
     bool running = true;
     while (running) {
@@ -35,12 +36,12 @@ int main() {
                 showStatistics(L);
                 break;
             case 0:
-                cout << "\nMenghapus semua Tournament!" << endl;
+                cout<<"\nMenghapus semua Tournament!"<<endl;
                 deleteAllTournaments(L);
                 running = false;
                 break;
             default:
-                cout << "\nPilihan tidak valid!" << endl;
+                cout<<"\nPilihan tidak valid!"<<endl;
                 break;
         }
     }

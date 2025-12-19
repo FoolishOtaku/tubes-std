@@ -39,10 +39,10 @@ adrTournament findTournamentByName(ListTournament L, string name);
 void showAllTournaments(ListTournament L);
 void updateTournament(ListTournament &L, int tournamentID);
 
-// Query
 void queryTournamentByPrize(ListTournament L, int minPrize);
 int countAllTournaments(ListTournament L);
 int countAllMatches(ListTournament L);
+int countMatchesByTournament(adrTournament P);
 
 void deleteAllTournaments(ListTournament &L);
 

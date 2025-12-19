@@ -1,6 +1,5 @@
 #include "tournament.h"
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 void createListTournament(ListTournament &L) {
@@ -16,20 +15,21 @@ adrTournament createElmTournament(Tournament data) {
 }
 
 void insertFirstTournament(ListTournament &L, adrTournament P) {
-    if (L.first == nullptr) {
+    if(L.first == nullptr){
         L.first = P;
-    } else {
+    }else{
         P->next = L.first;
         L.first = P;
     }
 }
 
-void insertLastTournament(ListTournament &L, adrTournament P) {
+void insertLastTournament(ListTournament &L, adrTournament P) 
+{
     if (L.first == nullptr) {
         L.first = P;
     } else {
         adrTournament Q = L.first;
-        while (Q->next != nullptr) {
+        while(Q->next != nullptr) {
             Q = Q->next;
         }
         Q->next = P;
@@ -47,7 +47,7 @@ void deleteTournament(ListTournament &L, int tournamentID) {
     adrTournament P = L.first;
     adrTournament Prec = nullptr;
     
-    while (P != nullptr && P->info.tournamentID != tournamentID) {
+    while(P != nullptr && P->info.tournamentID != tournamentID){
         Prec = P;
         P = P->next;
     }
@@ -61,12 +61,13 @@ void deleteTournament(ListTournament &L, int tournamentID) {
             Prec->next = P->next;
         }
         delete P;
-        cout << "Tournament berhasil dihapus!" << endl;
+        cout<<"Tournament berhasil dihapus!"<<endl;
     } else {
-        cout << "Tournament dengan ID " << tournamentID << " tidak ditemukan!" << endl;
+        cout<<"Tournament dengan ID "<<tournamentID<<" tidak ditemukan!"<<endl;
     }
 }
 
+//query
 adrTournament findTournamentByID(ListTournament L, int tournamentID) {
     adrTournament P = L.first;
     while (P != nullptr) {
@@ -89,29 +90,30 @@ adrTournament findTournamentByName(ListTournament L, string name) {
     return nullptr;
 }
 
-void showAllTournaments(ListTournament L) {
-    if (L.first == nullptr) {
-        cout << "Belum ada tournament yang terdaftar." << endl;
+void showAllTournaments(ListTournament L) 
+{
+    if(L.first == nullptr){
+        cout<<"Belum ada tournament yang terdaftar."<<endl;
         return;
     }
     
     adrTournament P = L.first;
-    cout << "\n========================================" << endl;
-    cout << "         DAFTAR TOURNAMENT ESPORT       " << endl;
-    cout << "========================================" << endl;
+    cout<<"\n========================================"<<endl;
+    cout<<"         DAFTAR TOURNAMENT ESPORT       "<<endl;
+    cout<<"========================================"<<endl;
     
     while (P != nullptr) {
-        cout << "ID Tournament  : " << P->info.tournamentID << endl;
-        cout << "Nama           : " << P->info.tournamentName << endl;
-        cout << "Game           : " << P->info.game << endl;
-        cout << "Tanggal Mulai  : " << P->info.startDate << endl;
-        cout << "Tanggal Selesai: " << P->info.endDate << endl;
-        cout << "Total Hadiah   : $" << P->info.totalPrize << endl;
-        cout << "Jumlah Match   : " << countMatchesByTournament(P) << endl;
-        cout << "----------------------------------------" << endl;
+        cout<<"ID Tournament  : "<<P->info.tournamentID<<endl;
+        cout<<"Nama           : "<<P->info.tournamentName<<endl;
+        cout<<"Game           : "<<P->info.game<<endl;
+        cout<<"Tanggal Mulai  : "<<P->info.startDate<<endl;
+        cout<<"Tanggal Selesai: "<<P->info.endDate<<endl;
+        cout<<"Total Hadiah   : $"<<P->info.totalPrize<<endl;
+        cout<<"Jumlah Match   : "<<countMatchesByTournament(P)<<endl;
+        cout<<"----------------------------------------"<<endl;
         P = P->next;
     }
-    cout << "\nTekan Enter untuk melanjutkan...";
+    cout<<"\nTekan Enter untuk melanjutkan...";
     cin.ignore();
     cin.get();
 }
@@ -119,26 +121,37 @@ void showAllTournaments(ListTournament L) {
 void updateTournament(ListTournament &L, int tournamentID) {
     adrTournament P = findTournamentByID(L, tournamentID);
     if (P != nullptr) {
-        cout << "\n=== Update Tournament ===" << endl;
-        cout << "Data saat ini:" << endl;
-        cout << "Nama: " << P->info.tournamentName << endl;
-        cout << "Game: " << P->info.game << endl;
-        cout << "Hadiah: $" << P->info.totalPrize << endl;
+        cout<<"\n=== Update Tournament ==="<<endl;
+        cout<<"Data saat ini:"<<endl;
+        cout<<"Nama: "<<P->info.tournamentName<<endl;
+        cout<<"Game: "<<P->info.game<<endl;
+        cout<<"Hadiah: $"<<P->info.totalPrize<<endl;
         
-        cout << "\nMasukkan data baru:" << endl;
-        cout << "Nama Tournament: ";
+        cout<<"\nMasukkan data baru:"<<endl;
+        cout<<"Nama Tournament: ";
         cin >> P->info.tournamentName;
-        cout << "Game: ";
+        cout<<"Game: ";
         cin >> P->info.game;
-        cout << "Tanggal Mulai (DD/MM/YYYY): ";
+        cout<<"Tanggal Mulai (DD/MM/YYYY): ";
         cin >> P->info.startDate;
-        cout << "Tanggal Selesai (DD/MM/YYYY): ";
+        cout<<"Tanggal Selesai (DD/MM/YYYY): ";
         cin >> P->info.endDate;
-        cout << "Total Hadiah ($): ";
+        cout<<"Total Hadiah ($): ";
         cin >> P->info.totalPrize;
         
-        cout << "Tournament berhasil diupdate!" << endl;
+        cout<<"Tournament berhasil diupdate!"<<endl;
     } else {
-        cout << "Tournament tidak ditemukan!" << endl;
+        cout<<"Tournament tidak ditemukan!"<<endl;
     }
+}
+
+void deleteAllTournaments(ListTournament &L) {
+    adrTournament P = L.first;
+    while (P != nullptr) {
+        deleteAllMatches(P);
+        adrTournament temp = P;
+        P = P->next;
+        delete temp;
+    }
+    L.first = nullptr;
 }

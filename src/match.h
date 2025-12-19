@@ -32,6 +32,5 @@ adrMatch findMatchByName(adrTournament P, string matchName);
 void showAllMatches(adrTournament P);
 void updateMatch(adrTournament P, int matchID);
 void deleteAllMatches(adrTournament P);
-int countMatchesByTournament(adrTournament P);
 
 #endif
