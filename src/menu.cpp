@@ -11,7 +11,7 @@ void displayMainMenu()
     cout<<"2. Menu Match"<<endl;
     cout<<"3. Search Tournament"<<endl;
     cout<<"4. Query Tournament"<<endl;
-    cout<<"5. Statistik Sistem"<<endl;
+    cout<<"5. Statistik Tournament"<<endl;
     cout<<"0. Keluar"<<endl;
     cout<<"============================================"<<endl;
     cout<<"Pilih menu: ";
@@ -44,6 +44,41 @@ void displayMatchMenu() {
     cout<<"0. Kembali ke Menu Utama"<<endl;
     cout<<"========================================"<<endl;
     cout<<"Pilih menu: ";
+}
+
+void startMenu(ListTournament &L) {
+    bool running = true;
+    while (running) {
+        displayMainMenu();
+        int choice;
+        cin >> choice;
+        cin.ignore();
+        switch (choice) {
+            case 1:
+                menuTournament(L);
+                break;
+            case 2:
+                menuMatch(L);
+                break;
+            case 3:
+                searchTournament(L);
+                break;
+            case 4:
+                queryTournament(L);
+                break;
+            case 5:
+                showStatistics(L);
+                break;
+            case 0:
+                cout<<"\nMenghapus semua Tournament!"<<endl;
+                deleteAllTournaments(L);
+                running = false;
+                break;
+            default:
+                cout<<"\nPilihan tidak valid!"<<endl;
+                break;
+        }
+    }
 }
 
 void addTournament(ListTournament &L) {

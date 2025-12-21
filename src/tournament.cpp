@@ -61,7 +61,7 @@ void deleteTournament(ListTournament &L, int tournamentID) {
             Prec->next = P->next;
         }
         delete P;
-        cout<<"Tournament berhasil dihapus!"<<endl;
+        cout<<"Tournament berhasil dihapus"<<endl;
     } else {
         cout<<"Tournament dengan ID "<<tournamentID<<" tidak ditemukan!"<<endl;
     }

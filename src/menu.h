@@ -7,6 +7,7 @@
 void displayMainMenu();
 void displayTournamentMenu();
 void displayMatchMenu();
+void startMenu(ListTournament &L);
 
 void menuTournament(ListTournament &L);
 void addTournament(ListTournament &L);
