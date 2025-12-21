@@ -8,13 +8,18 @@ Tubes-Std/
 │   └── app.exe              # File executable hasil compile
 ├── src/
 │   ├── tournament.h         # Header Tournament (struktur & deklarasi)
-│   ├── tournament.cpp       # Implementasi Tournament
+│   ├── tournament.cpp       # Implementasi Tournament & Delete Operations
 │   ├── match.h              # Header Match (struktur & deklarasi)
 │   ├── match.cpp            # Implementasi Match
 │   ├── menu.h               # Header Menu (deklarasi fungsi UI)
-│   ├── menu.cpp             # Implementasi Menu
-│   └── query.cpp            # Implementasi Query & Counting
+│   ├── menu.cpp             # Implementasi Menu & UI Handlers
+│   ├── query.cpp            # Implementasi Query, Counting & Statistics
+│   ├── utils.h              # Header Utility Functions
+│   ├── utils.cpp            # Implementasi Utility Functions
+│   ├── data_loader.h        # Header Data Loader
+│   └── data_loader.cpp      # Implementasi File Loading
 ├── main.cpp                 # Program utama
+├── data.txt                 # File data tournament dan match
 └── README.md                # Dokumentasi ini
 ```
 
@@ -83,6 +88,8 @@ struct Match {
 
 - `updateTournament(ListTournament &L, int tournamentID)`
 - `deleteTournament(ListTournament &L, int tournamentID)`
+- `deleteFirstTournament(ListTournament &L)`
+- `deleteLastTournament(ListTournament &L)`
 - `deleteAllTournaments(ListTournament &L)`
 
 ### B. MATCH OPERATIONS (match.cpp)
@@ -111,7 +118,7 @@ struct Match {
 - `deleteMatch(adrTournament P, int matchID)`
 - `deleteAllMatches(adrTournament P)`
 
-### C. QUERY & COUNTING (query.cpp)
+### C. QUERY, STATISTICS & AGGREGATION (query.cpp)
 
 #### 1. Query
 
@@ -124,6 +131,17 @@ struct Match {
 - `countAllMatches(ListTournament L) → int`
 - `countMatchesByTournament(adrTournament P) → int`
 
+#### 3. Average & Statistics
+
+- `getAveragePrize(ListTournament L) → float`
+- `getAverageMatchPerTournament(ListTournament L) → float`
+
+#### 4. Group By
+
+- `groupTournamentByGame(ListTournament L)`
+  - Grouping tournament berdasarkan game
+  - Menampilkan total tournament, total prize, dan avg prize per game
+
 ### D. MENU & USER INTERFACE (menu.cpp)
 
 #### 1. Display Menu
@@ -132,35 +150,68 @@ struct Match {
 - `displayTournamentMenu()`
 - `displayMatchMenu()`
 
-#### 2. Menu Controllers
+###UpdateTournament(ListTournament &L)`
 
-- `startMenu(ListTournament &L)` - Main loop
-- `menuTournament(ListTournament &L)` - Tournament menu handler
-- `menuMatch(ListTournament &L)` - Match menu handler
-
-#### 3. Tournament UI Handlers
-
-- `addTournament(ListTournament &L)`
-- `searchTournamentByID(ListTournament L)`
-- `searchTournamentByName(ListTournament L)`
-- `handleUpdateTournament(ListTournament &L)`
-- `handleDeleteTournament(ListTournament &L)`
+- `DeleteTournament(ListTournament &L)`
 
 #### 4. Match UI Handlers
 
 - `addMatch(ListTournament &L)`
-- `handleShowMatches(ListTournament L)`
+- `ShowMatches(ListTournament L)`
 - `searchMatchByID(ListTournament L)`
-- `handleUpdateMatch(ListTournament L)`
-- `handleDeleteMatch(ListTournament L)`
+- `UpdateMatch(ListTournament L)`
+- `DeleteMatch(ListTournament L)`
 
-#### 5. Utility
+#### 5. Feature Menus
 
-- `searchTournament(ListTournament L)` - Quick search
 - `queryTournament(ListTournament L)` - Query by prize
+- `menuAverage(ListTournament L)` - Average menu handler
+- `menuGroupBy(ListTournament L)` - Group by menu handler
 - `showStatistics(ListTournament L)` - Display stats
 
-## FLOW PROGRAM
+### E. UTILITY FUNCTIONS (utils.cpp)
+
+#### 1. Screen Control
+
+- `pauseScreen()` - Pause dengan "Tekan Enter..."
+
+#### 2. Display Helpers
+
+- `displayTournamentInfo(adrTournament P)` - Tampilkan info tournament
+
+#### 3. Selection Helpers
+
+- `selectTournamentFromList(ListTournament L) → int` - Pilih tournament dari list
+
+### F. DATA LOADER (data_loader.cpp)
+
+[from data.txt]
+└─> Main Menu Loop
+├─> 1. menuTournament()
+│ ├─> Add Tournament
+│ ├─> Show All
+│ ├─> Search by ID
+│ ├─> Search by Name
+│ ├─> Update
+│ ├─> Delete
+│ ├─> Delete First
+│ └─> Delete Last
+├─> 2. menuMatch()
+│ ├─> Add Match to Tournament
+│ ├─> Show All Matches
+│ ├─> Search Match
+│ ├─> Update Match
+│ └─> Delete Match
+├─> 3. queryTournament()
+│ └─> Query by Min Prize
+├─> 4. menuAverage()
+│ ├─> Average Prize
+│ └─> Average Match per Tournament
+├─> 5. menuGroupBy()
+│ └─> Group Tournament by Game
+├─> 6. showStatistics()
+│ ├─> Total Tournament
+│ └─> Total Matchsrc\data_loader.cpp src\utils.cpp
 
 ```
 main.cpp
@@ -196,15 +247,7 @@ g++ main.cpp src\tournament.cpp src\match.cpp src\menu.cpp src\query.cpp -o bin\
 
 ### Run
 
-```powershell
-.\bin\app.exe
-```
-
-## FITUR PROGRAM
-
-1. **Tournament Management**
-
-   - CRUD Tournament (Create, Read, Update, Delete)
+```poDelete First & Delete Last Tournament
    - Search by ID atau Name
    - List semua tournament
 
@@ -214,19 +257,45 @@ g++ main.cpp src\tournament.cpp src\match.cpp src\menu.cpp src\query.cpp -o bin\
    - Search match by ID
    - List semua match per tournament
 
-3. **Query & Statistics**
+3. **Query & Search**
 
    - Query tournament berdasarkan minimal prize
-   - Hitung total tournament
+   - Search tournament by ID atau Name
+
+4. **Statistics & Aggregation**
+
+   - Count total tournament
+   - Count total match
+   - Count match per tournament
+   - Average Prize Tournament
+   - Average Match per Tournament
+   - Group Tournament by Game (dengan total & avg prize)
+
+5. **Data Loading**
+   - Auto-load dari data.txt saat program start
+   - 4 Tournament sample data:
+     - MPL Season 12 (Mobile Legends) - 3 matches
+     - VCT Masters (Valorant) - 4 matches
+     - PMPL ID Season 5 (PUBG Mobile) - 5 matches
+     - MLBB World Championship (Mobile Legends) - 7 matches
    - Hitung total match
    - Hitung match per tournament
 
-4. **Sample Data**
-   - MPL Season 12 (Mobile Legends)
-     - Grand Final: RRQ vs ONIC
-     - Semi Final: EVOS vs RRQ
-   - VCT Masters (Valorant)
-     - Quarter Final: PRX vs DRX
+4. **Sample Data**(dan `<string>`, `<fstream>` untuk data loading)
+- **Input Style**: `cin>>` (no getline, kecuali di search by name)
+- **Output Style**: `cout<<` (no spacing, no `\n` literals)
+- **Formatting**: Variasi style (if/while spacing, brace position)
+- **Pause**: Menggunakan `pauseScreen()` dari utils.cpp
+- **Memory Management**: Manual delete dengan deleteAll functions
+- **Control Flow**: Menggunakan if-else block (no early return pattern)
+- **Data Source**: External file `data.txt` (pipe-delimited format)
+- **Code Organization**:
+  - tournament.cpp: CRUD & delete operations
+  - match.cpp: Match operations
+  - query.cpp: Query, statistics, aggregation
+  - utils.cpp: Reusable helper functions
+  - data_loader.cpp: File loading functionality
+  - menu.cpp: UI & menu handler
 
 ## CATATAN TEKNIS
 
@@ -236,3 +305,4 @@ g++ main.cpp src\tournament.cpp src\match.cpp src\menu.cpp src\query.cpp -o bin\
 - **Formatting**: Variasi style (if/while spacing, brace position)
 - **Pause**: `cin.ignore() + cin.get()` setelah list display
 - **Memory Management**: Manual delete dengan deleteAll functions
+```

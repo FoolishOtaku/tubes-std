@@ -3,13 +3,15 @@
 using namespace std;
 
 void pauseScreen() {
-    cout<<"\nTekan Enter untuk melanjutkan...";
+    cout<<endl;
+    cout<<"Tekan Enter untuk melanjutkan...";
     cin.ignore();
     cin.get();
 }
 
 void displayTournamentInfo(adrTournament P) {
-    cout<<"\nID             : "<<P->info.tournamentID<<endl;
+    cout<<endl;
+    cout<<"ID             : "<<P->info.tournamentID<<endl;
     cout<<"Nama           : "<<P->info.tournamentName<<endl;
     cout<<"Game           : "<<P->info.game<<endl;
     cout<<"Tanggal Mulai  : "<<P->info.startDate<<endl;
@@ -24,7 +26,8 @@ int selectTournamentFromList(ListTournament L) {
         return -1;
     }
     
-    cout<<"\nDaftar Tournament:"<<endl;
+    cout<<endl;
+    cout<<"Daftar Tournament:"<<endl;
     adrTournament temp = L.first;
     while(temp != nullptr){
         cout<<"ID: "<<temp->info.tournamentID<<" - "<<temp->info.tournamentName
@@ -33,7 +36,8 @@ int selectTournamentFromList(ListTournament L) {
     }
     
     int id;
-    cout<<"\nMasukkan ID Tournament: ";
+    cout<<endl;
+    cout<<"Masukkan ID Tournament: ";
     cin>>id;
     return id;
 }

@@ -85,7 +85,8 @@ void showAllMatches(adrTournament P) {
     }
     
     adrMatch M = P->info.firstMatch;
-    cout<<"\n========================================"<<endl;
+    cout<<endl;
+    cout<<"========================================"<<endl;
     cout<<"   DAFTAR MATCH: "<<P->info.tournamentName<<endl;
     cout<<"========================================"<<endl;
     

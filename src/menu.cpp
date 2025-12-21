@@ -5,7 +5,8 @@ using namespace std;
 
 void displayMainMenu() 
 {
-    cout<<"\n============================================"<<endl;
+    cout<<endl;
+    cout<<"============================================"<<endl;
     cout<<"   SISTEM MANAJEMEN TOURNAMENT ESPORT"<<endl;
     cout<<"============================================"<<endl;
     cout<<"1. Menu Tournament"<<endl;
@@ -20,7 +21,8 @@ void displayMainMenu()
 }
 
 void displayTournamentMenu() {
-    cout<<"\n========================================"<<endl;
+    cout<<endl;
+    cout<<"========================================"<<endl;
     cout<<"         MENU TOURNAMENT"<<endl;
     cout<<"========================================"<<endl;
     cout<<"1. Tambah Tournament Baru"<<endl;
@@ -35,7 +37,8 @@ void displayTournamentMenu() {
 }
 
 void displayMatchMenu() {
-    cout<<"\n========================================"<<endl;
+    cout<<endl;
+    cout<<"========================================"<<endl;
     cout<<"           MENU MATCH"<<endl;
     cout<<"========================================"<<endl;
     cout<<"1. Tambah Match ke Tournament"<<endl;
@@ -75,12 +78,14 @@ void startMenu(ListTournament &L) {
                 showStatistics(L);
                 break;
             case 0:
-                cout<<"\nMenghapus semua Tournament!"<<endl;
+                cout<<endl;
+                cout<<"Menghapus semua Tournament!"<<endl;
                 deleteAllTournaments(L);
                 running = false;
                 break;
             default:
-                cout<<"\nPilihan tidak valid!"<<endl;
+                cout<<endl;
+                cout<<"Pilihan tidak valid!"<<endl;
                 break;
         }
     }
@@ -90,7 +95,8 @@ void addTournament(ListTournament &L) {
     Tournament t;
     adrTournament P = nullptr;
     int id = NULL;
-    cout<<"\n=== Tambah Tournament Baru ==="<<endl;
+    cout<<endl;
+    cout<<"=== Tambah Tournament Baru ==="<<endl;
     cout<<"ID Tournament: ";
     cin >> t.tournamentID;
     cin.ignore();
@@ -114,7 +120,8 @@ void addTournament(ListTournament &L) {
 
     P = createElmTournament(t);
     insertLastTournament(L, P);
-    cout<<"\nTournament berhasil ditambahkan!"<<endl;
+    cout<<endl;
+    cout<<"Tournament berhasil ditambahkan!"<<endl;
 }
 
 void searchTournamentByID(ListTournament L) {
@@ -131,7 +138,8 @@ void searchTournamentByID(ListTournament L) {
 
 void searchTournamentByName(ListTournament L) {
     string name;
-    cout<<"\nMasukkan Nama Tournament: ";
+    cout<<endl;
+    cout<<"Masukkan Nama Tournament: ";
     cin.ignore();
     getline(cin, name);
     adrTournament P = findTournamentByName(L, name);
@@ -192,7 +200,8 @@ void addMatch(ListTournament &L) {
 
                 adrMatch M = createElmMatch(m);
                 insertLastMatch(T, M);
-                cout<<"\nMatch berhasil ditambahkan!"<<endl;
+                cout<<endl;
+                cout<<"Match berhasil ditambahkan!"<<endl;
             }else{
                 cout<<"ID match sudah ada!"<<endl;
             }
@@ -249,11 +258,13 @@ void searchMatchByID(ListTournament L) {
            <<" ("<<m->info.team1<<" vs "<<m->info.team2<<")"<<endl;
         m = m->next;
     }
-    cout<<"\nMasukkan ID Match: ";
+    cout<<endl;
+    cout<<"Masukkan ID Match: ";
     cin >> matchID;
     M = findMatchByID(T, matchID);
     if (M) {
-        cout<<"\nID Match   : "<<M->info.matchID<<endl;
+        cout<<endl;
+        cout<<"ID Match   : "<<M->info.matchID<<endl;
         cout<<"Nama Match : "<<M->info.matchName<<endl;
         cout<<"Tim 1      : "<<M->info.team1<<" (Score: "<<M->info.scoreTeam1<<")"<<endl;
         cout<<"Tim 2      : "<<M->info.team2<<" (Score: "<<M->info.scoreTeam2<<")"<<endl;
@@ -274,26 +285,30 @@ void UpdateMatch(ListTournament L) {
         cout<<"Belum ada tournament."<<endl;
         return;
     }
-    cout<<"\nDaftar Tournament:"<<endl;
+    cout<<endl;
+    cout<<"Daftar Tournament:"<<endl;
     temp = L.first;
     while (temp != nullptr) {
         cout<<"ID: "<<temp->info.tournamentID<<" - "<<temp->info.tournamentName<<endl;
         temp = temp->next;
     }
-    cout<<"\nMasukkan ID Tournament: ";
+    cout<<endl;
+    cout<<"Masukkan ID Tournament: ";
     cin >> tournamentID;
     T = findTournamentByID(L, tournamentID);
     if (!T) {
         cout<<"Tournament tidak ditemukan!"<<endl;
         return;
     }
-    cout<<"\nDaftar Match:"<<endl;
+    cout<<endl;
+    cout<<"Daftar Match:"<<endl;
     m = T->info.firstMatch;
     while (m != nullptr) {
         cout<<"ID: "<<m->info.matchID<<" - "<<m->info.matchName<<endl;
         m = m->next;
     }
-    cout<<"\nMasukkan ID Match: ";
+    cout<<endl;
+    cout<<"Masukkan ID Match: ";
     cin >> matchID;
     updateMatch(T, matchID);
 }
@@ -310,13 +325,15 @@ void DeleteMatch(ListTournament L) {
         cout<<"Belum ada tournament."<<endl;
         return;
     }
-    cout<<"\nDaftar Tournament:"<<endl;
+    cout<<endl;
+    cout<<"Daftar Tournament:"<<endl;
     temp = L.first;
     while (temp != nullptr) {
         cout<<"ID: "<<temp->info.tournamentID<<" - "<<temp->info.tournamentName<<endl;
         temp = temp->next;
     }
-    cout<<"\nMasukkan ID Tournament: ";
+    cout<<endl;
+    cout<<"Masukkan ID Tournament: ";
     cin >> tournamentID;
     T = findTournamentByID(L, tournamentID);
     if (!T) {
@@ -327,13 +344,15 @@ void DeleteMatch(ListTournament L) {
         cout<<"Belum ada match."<<endl;
         return;
     }
-    cout<<"\nDaftar Match:"<<endl;
+    cout<<endl;
+    cout<<"Daftar Match:"<<endl;
     m = T->info.firstMatch;
     while (m != nullptr) {
         cout<<"ID: "<<m->info.matchID<<" - "<<m->info.matchName<<endl;
         m = m->next;
     }
-    cout<<"\nMasukkan ID Match: ";
+    cout<<endl;
+    cout<<"Masukkan ID Match: ";
     cin >> matchID;
     M = findMatchByID(T, matchID);
     if (M) {
@@ -351,14 +370,17 @@ void DeleteMatch(ListTournament L) {
 
 void queryTournament(ListTournament L) {
     int minPrize;
-    cout<<"\n=== Query Tournament by Prize ===";
-    cout<<"\nMinimal hadiah ($): ";
+    cout<<endl;
+    cout<<"=== Query Tournament by Prize ===";
+    cout<<endl;
+    cout<<"Minimal hadiah ($): ";
     cin >> minPrize;
     queryTournamentByPrize(L, minPrize);
 }
 
 void menuAverage(ListTournament L) {
-    cout<<"\n=== AVERAGE MENU ==="<<endl;
+    cout<<endl;
+    cout<<"=== AVERAGE MENU ==="<<endl;
     cout<<"1. Rata-rata Prize Tournament"<<endl;
     cout<<"2. Rata-rata Match per Tournament"<<endl;
     cout<<"0. Kembali"<<endl;
@@ -368,17 +390,20 @@ void menuAverage(ListTournament L) {
     
     if(choice == 1){
         float avg = getAveragePrize(L);
-        cout<<"\n=== Rata-rata Prize ==="<<endl;
+        cout<<endl;
+        cout<<"=== Rata-rata Prize ==="<<endl;
         cout<<"Average Prize: $"<<avg<<endl;
     }else if(choice == 2){
         float avg = getAverageMatchPerTournament(L);
-        cout<<"\n=== Rata-rata Match ==="<<endl;
+        cout<<endl;
+        cout<<"=== Rata-rata Match ==="<<endl;
         cout<<"Average Match per Tournament: "<<avg<<endl;
     }
 }
 
 void menuGroupBy(ListTournament L) {
-    cout<<"\n=== GROUP BY MENU ==="<<endl;
+    cout<<endl;
+    cout<<"=== GROUP BY MENU ==="<<endl;
     cout<<"1. Group Tournament by Game"<<endl;
     cout<<"0. Kembali"<<endl;
     cout<<"Pilih: ";
@@ -391,7 +416,8 @@ void menuGroupBy(ListTournament L) {
 }
 
 void showStatistics(ListTournament L) {
-    cout<<"\n=== STATISTIK SISTEM ==="<<endl;
+    cout<<endl;
+    cout<<"=== STATISTIK SISTEM ==="<<endl;
     cout<<"Total Tournament: "<<countAllTournaments(L)<<endl;
     cout<<"Total Match     : "<<countAllMatches(L)<<endl;
 }

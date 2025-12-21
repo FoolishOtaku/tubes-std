@@ -144,6 +144,40 @@ void updateTournament(ListTournament &L, int tournamentID) {
     }
 }
 
+void deleteFirstTournament(ListTournament &L) {
+    if(L.first != nullptr){
+        adrTournament temp = L.first;
+        deleteAllMatches(temp);
+        L.first = L.first->next;
+        delete temp;
+        cout<<"Tournament pertama berhasil dihapus!"<<endl;
+    }else{
+        cout<<"List kosong!"<<endl;
+    }
+}
+
+void deleteLastTournament(ListTournament &L) {
+    if(L.first == nullptr){
+        cout<<"List kosong!"<<endl;
+        return;
+    }
+    if(L.first->next == nullptr){
+        deleteAllMatches(L.first);
+        delete L.first;
+        L.first = nullptr;
+        cout<<"Tournament terakhir berhasil dihapus!"<<endl;
+        return;
+    }
+    adrTournament P = L.first;
+    while(P->next->next != nullptr){
+        P = P->next;
+    }
+    deleteAllMatches(P->next);
+    delete P->next;
+    P->next = nullptr;
+    cout<<"Tournament terakhir berhasil dihapus!"<<endl;
+}
+
 void deleteAllTournaments(ListTournament &L) {
     adrTournament P = L.first;
     while (P != nullptr) {
