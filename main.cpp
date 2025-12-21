@@ -9,10 +9,12 @@ int main()
     ListTournament L;
     createListTournament(L);
 
-    cout<<"=== Sistem Manajemen Tournament Esport ==="<<endl;
-    cout<<"Memuat data sample..."<<endl;
+    cout<<"Import data dulsss..."<<endl;
     loadSampleData(L);
-    cout<<"Data sample berhasil dimuat!"<<endl;
+    cout<<"Data berhasil di import cuyyy..!"<<endl;
+
+    cout<<"=== Sistem Manajemen Tournament Esport ==="<<endl;
+
 
     startMenu(L);
     return 0;
