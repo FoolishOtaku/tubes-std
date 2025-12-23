@@ -31,6 +31,7 @@ void displayTournamentMenu() {
     cout<<"4. Cari Tournament by Nama"<<endl;
     cout<<"5. Update Tournament"<<endl;
     cout<<"6. Hapus Tournament"<<endl;
+    cout<<"7. Lihat Tournament Diurutkan berdasarkan Prize"<<endl;
     cout<<"0. Kembali ke Menu Utama"<<endl;
     cout<<"========================================"<<endl;
     cout<<"Pilih menu: ";
@@ -468,6 +469,9 @@ void menuTournament(ListTournament &L) {
                 break;
             case 6:
                 DeleteTournament(L);
+                break;
+            case 7:
+                showTournamentsSortedByPrize(L);
                 break;
             case 0:
                 run = false;
